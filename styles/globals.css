@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Sohne';
+  src: url('fonts/t/test-soehne-buch.woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sohne';
+  src: url('fonts/t/test-soehne-buch-kursiv.woff2');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Sohne';
+  src: url('fonts/t/test-soehne-kraftig.woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sohne';
+  src: url('fonts/t/test-soehne-kraftig-kursiv.woff2');
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Sohne';
+  src: url('fonts/t/test-soehne-halbfett.woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sohne';
+  src: url('fonts/t/test-soehne-halbfett-kursiv.woff2');
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Sohne';
+  src: url('fonts/t/test-soehne-dreiviertelfett.woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sohne';
+  src: url('fonts/t/test-soehne-dreiviertelfett-kursiv.woff2');
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Sohne';
+  src: url('fonts/t/test-soehne-fett.woff2');
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sohne';
+  src: url('fonts/t/test-soehne-fett-kursiv.woff2');
+  font-weight: 800;
+  font-style: italic;
+}@font-face {
+  font-family: 'Sohne';
+  src: url('fonts/t/test-soehne-extrafett.woff2');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sohne';
+  src: url('fonts/t/test-soehne-extrafett-kursiv.woff2');
+  font-weight: 900;
+  font-style: italic;
+}
+
+
+
+
+body {
+  font-family: 'Sohne';
+  background-color: #f8fafc;
+}
+
+.transition {
+  transition: 300ms;
+}
+
+.ff {
+  font-family: 'Playfair Display';
+}
