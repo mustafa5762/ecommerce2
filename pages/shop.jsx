@@ -306,7 +306,7 @@ export default function Example() {
               {/* Product grid */}
               <div className="lg:col-span-4">
                 {/* Replace with your content */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 lg:gap-x-6 gap-y-6">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-3 lg:gap-x-6 gap-y-10">
                     {products ? products.map(product => <Product key={product._id} product={product}/>) : <h1>Loading</h1>}
                 </div>
                 {/* /End replace */}

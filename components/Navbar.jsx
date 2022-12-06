@@ -283,7 +283,7 @@ export default function Example({setOpenn}) {
       </Transition.Root>
 
       <header className="relative bg-gray-50">
-        <p className="flex h-10 items-center justify-center bg-emerald-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
+        <p className="flex h-10 items-center justify-center bg-violet-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
           Get free delivery on orders over $100
         </p>
 
@@ -305,7 +305,7 @@ export default function Example({setOpenn}) {
                   <span className="sr-only">Your Company</span>
                   <img
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=emerald&shade=500"
+                    src="https://tailwindui.com/img/logos/mark.svg?color=violet&shade=500"
                     alt=""
                   />
                 </a>
@@ -322,7 +322,7 @@ export default function Example({setOpenn}) {
                             <Popover.Button
                               className={classNames(
                                 open
-                                  ? 'border-emerald-500 text-emerald-500'
+                                  ? 'border-violet-500 text-violet-500'
                                   : 'border-transparent text-gray-700 hover:text-gray-800',
                                 'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
                               )}

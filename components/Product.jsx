@@ -20,7 +20,7 @@ function Product({product}) {
                       <span aria-hidden="true" className="absolute inset-0" />
                       {product.name}
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">{product.category}</p>
+                  <p className="mt-0.5 text-sm text-gray-500">{product.category}</p>
                 </div>
                 <p className="text-sm font-medium text-gray-900">{product.price}</p>
               </div>
