@@ -8,7 +8,7 @@ function Product({product}) {
     <div>
         <Link href={"/products/" + product._id}>
         <div key={product._id} className="group relative">
-              <div className="min-h-80 border-4 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80">
+              <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80">
                 <img
                   src="https://tailwindui.com/img/ecommerce-images/product-quick-preview-02-detail.jpg"
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"

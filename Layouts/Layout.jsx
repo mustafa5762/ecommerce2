@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Login from '../components/Login'
+import Footer from '../components/Footer'
+import Cart from '../components/Cart'
 
 function Layout(props) {
 
@@ -8,9 +10,11 @@ function Layout(props) {
 
   return (
     <div>
+        <Cart/>
         <Navbar setOpenn={setOpenn}/>
         <Login setOpenn={setOpenn} openn={openn}/>
         {props.children}
+        <Footer/>
     </div>
   )
 }
