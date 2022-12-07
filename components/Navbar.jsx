@@ -283,8 +283,8 @@ export default function Example({setOpenn}) {
       </Transition.Root>
 
       <header className="relative bg-gray-50">
-        <p className="flex h-10 items-center justify-center bg-violet-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
-          Get free delivery on orders over $100
+        <p className="flex h-10 items-center justify-center bg-emerald-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
+          Get free delivery on orders over Rs 2500
         </p>
 
         <nav aria-label="Top" className="mx-auto px-4 sm:px-6 lg:px-32">
@@ -305,7 +305,7 @@ export default function Example({setOpenn}) {
                   <span className="sr-only">Your Company</span>
                   <img
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=violet&shade=500"
+                    src="https://tailwindui.com/img/logos/mark.svg?color=emerald&shade=500"
                     alt=""
                   />
                 </a>
@@ -322,7 +322,7 @@ export default function Example({setOpenn}) {
                             <Popover.Button
                               className={classNames(
                                 open
-                                  ? 'border-violet-500 text-violet-500'
+                                  ? 'border-emerald-500 text-emerald-500'
                                   : 'border-transparent text-gray-700 hover:text-gray-800',
                                 'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
                               )}
@@ -422,35 +422,6 @@ export default function Example({setOpenn}) {
                   </a>
                 </div>}
 
-                {
-                  user &&
-                  <>
-                  <div className='relative mr-2'>
-                    <img onClick={() => setmenu(!menu)} referrerpolicy="no-referrer" className="w-7 h-7 rounded-full" src={user.photoURL} alt="Rounded avatar"></img>
-                    { menu && <div class="z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow-xl absolute right-0 border border-gray-200">
-                        <div class="py-3 px-4 text-sm text-gray-900 ">
-                          <div>{user.displayName}</div>
-                          <div class="font-medium truncate">{user.email}</div>
-                        </div>
-                        <ul class="py-1 text-sm text-gray-700" aria-labelledby="avatarButton">
-                          <li>
-                            <a href="#" class="block py-2 px-4 hover:bg-gray-100">Dashboard</a>
-                          </li>
-                          <li>
-                            <a href="#" class="block py-2 px-4 hover:bg-gray-100">Settings</a>
-                          </li>
-                          <li>
-                            <a href="#" class="block py-2 px-4 hover:bg-gray-100">Earnings</a>
-                          </li>
-                        </ul>
-                        <div class="py-1">
-                          <a onClick={() => auth.signOut()} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
-                        </div>
-                    </div>}
-                  </div>
-                  </>
-                }
-
                 
 
                 <div className="hidden lg:ml-8 lg:flex">
@@ -484,6 +455,34 @@ export default function Example({setOpenn}) {
                     <span className="sr-only">items in cart, view bag</span>
                   </a>
                 </div>
+                {
+                  user &&
+                  <>
+                  <div className='relative ml-8'>
+                    <img onClick={() => setmenu(!menu)} referrerpolicy="no-referrer" className="w-7 h-7 rounded-full" src={user.photoURL} alt="Rounded avatar"></img>
+                    { menu && <div class="z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow-xl absolute right-0 border border-gray-200">
+                        <div class="py-3 px-4 text-sm text-gray-900 ">
+                          <div>{user.displayName}</div>
+                          <div class="font-medium truncate">{user.email}</div>
+                        </div>
+                        <ul class="py-1 text-sm text-gray-700" aria-labelledby="avatarButton">
+                          <li>
+                            <a href="#" class="block py-2 px-4 hover:bg-gray-100">Dashboard</a>
+                          </li>
+                          <li>
+                            <a href="#" class="block py-2 px-4 hover:bg-gray-100">Settings</a>
+                          </li>
+                          <li>
+                            <a href="#" class="block py-2 px-4 hover:bg-gray-100">Earnings</a>
+                          </li>
+                        </ul>
+                        <div class="py-1">
+                          <a onClick={() => auth.signOut()} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                        </div>
+                    </div>}
+                  </div>
+                  </>
+                }
               </div>
             </div>
           </div>

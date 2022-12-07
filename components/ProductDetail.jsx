@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { useStatePersist } from 'use-state-persist';
+import Breadcrumb from './Breadcrumb';
 
 
 const product = {
@@ -55,12 +56,14 @@ function Productdetail() {
 
   return (
     <>
-        <div className="px-4 lg:px-32 mt-20">
+        <div className="px-4 lg:px-32 mt-8">
+        <Breadcrumb/>
+        <div className="mt-6"></div>
         <div className="grid w-full grid-cols-1 items-start gap-y-8 gap-x-6 sm:grid-cols-12 lg:gap-x-8">
-                    <div className="aspect-w-2 aspect-h-3 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
+                    <div className="aspect-w-2 aspect-h-3 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-6">
                       <img src={product.imageSrc} alt={product.imageAlt} className="object-cover object-center border-2" />
                     </div>
-                    <div className="sm:col-span-8 lg:col-span-7">
+                    <div className="sm:col-span-8 lg:col-span-6">
                       <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">Valorant Reyna and Viper T-Shirt</h2>
 
                       <section aria-labelledby="information-heading" className="mt-2">
@@ -87,7 +90,7 @@ function Productdetail() {
                               ))}
                             </div>
                             <p className="sr-only">{product.rating} out of 5 stars</p>
-                            <a href="#" className="ml-3 text-sm font-medium text-violet-500 hover:text-violet-400">
+                            <a href="#" className="ml-3 text-sm font-medium text-emerald-500 hover:text-emerald-400">
                               {product.reviewCount} reviews
                             </a>
                           </div>
@@ -159,7 +162,7 @@ function Productdetail() {
                                         size.inStock
                                           ? 'bg-white shadow-sm text-gray-900 cursor-pointer'
                                           : 'bg-gray-50 text-gray-200 cursor-not-allowed',
-                                        active ? 'ring-2 ring-indigo-500' : '',
+                                        active ? 'ring-2 ring-emerald-500' : '',
                                         'group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1'
                                       )
                                     }
@@ -171,7 +174,7 @@ function Productdetail() {
                                           <span
                                             className={classNames(
                                               active ? 'border' : 'border-2',
-                                              checked ? 'border-violet-500' : 'border-transparent',
+                                              checked ? 'border-emerald-500' : 'border-transparent',
                                               'pointer-events-none absolute -inset-px rounded-md'
                                             )}
                                             aria-hidden="true"
@@ -200,7 +203,7 @@ function Productdetail() {
                           </div>
 
                           <button
-                            className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-violet-500 py-3 px-8 text-base font-medium text-white hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                            className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-emerald-500 py-3 px-8 text-base font-medium text-white hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
                             onClick={() => addToCart(product)}
                           >
                             Add to Cart
