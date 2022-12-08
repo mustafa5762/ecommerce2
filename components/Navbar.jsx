@@ -282,7 +282,7 @@ export default function Example({setOpenn}) {
         </Dialog>
       </Transition.Root>
 
-      <header className="relative bg-gray-50">
+      <header className="relative">
         <p className="flex h-10 items-center justify-center bg-emerald-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
           Get free delivery on orders over Rs 2500
         </p>
@@ -292,7 +292,7 @@ export default function Example({setOpenn}) {
             <div className="flex h-16 items-center">
               <button
                 type="button"
-                className="rounded-md bg-white p-2 text-gray-400 lg:hidden"
+                className="rounded-md p-2 text-gray-400 lg:hidden"
                 onClick={() => setOpen(true)}
               >
                 <span className="sr-only">Open menu</span>
@@ -424,23 +424,13 @@ export default function Example({setOpenn}) {
 
                 
 
-                <div className="hidden lg:ml-8 lg:flex">
-                  <a href="#" className="flex items-center text-gray-700 hover:text-gray-800">
-                    <img
-                      src="https://tailwindui.com/img/flags/flag-canada.svg"
-                      alt=""
-                      className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="ml-3 block text-sm font-medium">CAD</span>
-                    <span className="sr-only">, change currency</span>
-                  </a>
-                </div>
+               
 
                 {/* Search */}
                 <div className="flex lg:ml-6">
-                  <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
+                  <a href="#" className="p-2 text-gray-500 hover:text-gray-600">
                     <span className="sr-only">Search</span>
-                    <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
+                    <MagnifyingGlassIcon strokeWidth={1.5} className="h-6 w-6" aria-hidden="true" />
                   </a>
                 </div>
 
@@ -448,7 +438,8 @@ export default function Example({setOpenn}) {
                 <div className="ml-4 flow-root lg:ml-6">
                   <a href="#" className="group -m-2 flex items-center p-2">
                     <ShoppingCartIcon
-                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                      strokeWidth={1.5}
+                      className="h-6 w-6 flex-shrink-0 text-gray-500 group-hover:text-gray-600"
                       aria-hidden="true"
                     />
                     { cart && <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{cart.length}</span>}

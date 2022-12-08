@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
-import { StarIcon } from '@heroicons/react/20/solid'
+import { MinusIcon, PlusIcon, StarIcon } from '@heroicons/react/20/solid'
 import { useStatePersist } from 'use-state-persist';
 import Breadcrumb from './Breadcrumb';
+import InnerImageZoom from 'react-inner-image-zoom';
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
 
 
 const product = {
-  name: 'Basic Tee 6-Pack ',
-  price: '$192',
+  name: 'ITACHI UCHIHA GENJUTSU SWEATSHIRT',
+  price: '2,800',
   rating: 3.9,
   reviewCount: 117,
   href: '#',
-  imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-quick-preview-02-detail.jpg',
+  imageSrc: 'https://outlander.com.pk/wp-content/uploads/2021/10/Itachi-Uchiha.jpg',
   imageAlt: 'Two each of gray, white, and black shirts arranged on table.',
   colors: [
     { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
@@ -41,6 +43,7 @@ function Productdetail() {
   const [selectedSize, setSelectedSize] = useState(product.sizes[2])
 
   const [cart, setcart] = useStatePersist('@cart', [])
+  const [count, setcount] = useState(0)
 
   const addToCart = (pro) => {
     const data = {
@@ -56,22 +59,22 @@ function Productdetail() {
 
   return (
     <>
-        <div className="px-4 lg:px-32 mt-8">
+        <div className="lg:px-32 mt-8">
         <Breadcrumb/>
         <div className="mt-6"></div>
-        <div className="grid w-full grid-cols-1 items-start gap-y-8 gap-x-6 sm:grid-cols-12 lg:gap-x-8">
-                    <div className="aspect-w-2 aspect-h-3 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-6">
-                      <img src={product.imageSrc} alt={product.imageAlt} className="object-cover object-center border-2" />
+        <div className="grid w-full grid-cols-1 items-start gap-y-8 gap-x-6 sm:grid-cols-12 lg:gap-x-20">
+                    <div className="aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-6">
+                    <InnerImageZoom zoomType="hover" zoomPreload={true} src={product.imageSrc} zoomSrc={product.imageSrc} className="border-1 object-cover object-senter" />
                     </div>
-                    <div className="sm:col-span-8 lg:col-span-6">
-                      <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">Valorant Reyna and Viper T-Shirt</h2>
+                    <div className="sm:col-span-8 lg:col-span-6 px-4">
+                      <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">{product.name}</h2>
 
                       <section aria-labelledby="information-heading" className="mt-2">
                         <h3 id="information-heading" className="sr-only">
                           Product information
                         </h3>
 
-                        <p className="text-2xl text-gray-900">Rs 1200</p>
+                        <p className="text-2xl text-gray-900">Rs {product.price}</p>
 
                         {/* Reviews */}
                         <div className="mt-6">
@@ -201,17 +204,27 @@ function Productdetail() {
                               </div>
                             </RadioGroup>
                           </div>
-
-                          <button
-                            className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-emerald-500 py-3 px-8 text-base font-medium text-white hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
-                            onClick={() => addToCart(product)}
-                          >
-                            Add to Cart
-                          </button>
+                          <div className="flex space-x-2 lg:space-x-5">
+                            <div className="mt-6 border-2 w-3/6 lg:w-2/6 py-3 px-4 lg:px-8 text-base rounded-md text-gray-800 flex items-center justify-between">
+                              <div>
+                                <MinusIcon onClick={() => setcount(count - 1)} className="h-5 w-5 text-gray-500"/>
+                              </div>
+                              <span>{count}</span>
+                              <div>
+                                <PlusIcon onClick={() => setcount(count + 1)} className="h-5 w-5 text-gray-500"/>
+                              </div>
+                            </div>              
+                            <button
+                              className="mt-6 flex w-3/6 lg:w-4/6 items-center justify-center rounded-md border border-transparent bg-emerald-500 py-3 px-8 text-base font-medium text-white hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                              onClick={() => addToCart(product)}
+                              >
+                              Add to Cart
+                            </button>
+                          </div>
                         </div>
                         <div className="mt-8">
                           <h3 className="font-semibold text-lg text-gray-900">Description</h3>
-                          <p className="text-gray-600 mt-2 text-base">The Basic is an honest new take on a classic.The tee uses super soft, pre shrunk cotton for true comfort and dependable fit.They are hand-cut and sewn locally, with a special dying technique that gives each tee its own look</p>
+                          <p className="text-gray-600 mt-2 text-base leading-relaxed">The Basic is an honest new take on a classic.The tee uses super soft, pre shrunk cotton for true comfort and dependable fit.They are hand-cut and sewn locally, with a special dying technique that gives each tee its own look</p>
                         </div>
                       </section>
                     </div>

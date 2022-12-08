@@ -2,7 +2,7 @@ import React from 'react'
 
 function Breadcrumb() {
   return (
-    <div>
+    <div className='px-4 lg:px-0'>
         
 <nav class="flex" aria-label="Breadcrumb">
   <ol class="inline-flex items-center space-x-1 md:space-x-3">

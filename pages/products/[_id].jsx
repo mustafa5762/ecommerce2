@@ -5,6 +5,7 @@ import Productdetail from '../../components/ProductDetail';
 import axios from 'axios'
 import Login from '../../components/Login'
 import Layout from '../../Layouts/Layout';
+import Suggest from '../../components/Suggest';
 
 function Productd() {
 
@@ -26,6 +27,7 @@ function Productd() {
   return (
     <Layout>
        {product ? <Productdetail product={product}/> : "Loading"}
+       <Suggest/>
     </Layout>
   )
 }
