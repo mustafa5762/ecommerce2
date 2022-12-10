@@ -4,8 +4,9 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import axios from 'axios'
 import Product from '../components/Product'
-import Navbar from '../components/Navbar'
 import Layout from '../Layouts/Layout'
+import { RadioGroup } from '@headlessui/react'
+
 
 const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
@@ -59,6 +60,19 @@ const filters = [
   },
 ]
 
+const product = {
+  colors: [
+    { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
+    { name: 'Gray', class: 'bg-gray-200', selectedClass: 'ring-gray-400' },
+    { name: 'Black', class: 'bg-gray-900', selectedClass: 'ring-gray-900' },
+    { name: 'Red', class: 'bg-red-500', selectedClass: 'ring-gray-400' },
+    { name: 'Yellow', class: 'bg-yellow-500', selectedClass: 'ring-gray-400' },
+    { name: 'Green', class: 'bg-green-500', selectedClass: 'ring-gray-400' },
+    { name: 'Purple', class: 'bg-purple-500', selectedClass: 'ring-gray-400' },
+  ],
+}
+
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -66,6 +80,8 @@ function classNames(...classes) {
 export default function Example() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [products, setproducts] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(product.colors[0])
+  const [nopts, setnopts] = useState(1)
 
     const fetchProducts = async () => {
         const res = await axios.get('https://sore-cyan-twill.cyclic.app/api/products')
@@ -168,6 +184,7 @@ export default function Example() {
                                 ))}
                               </div>
                             </Disclosure.Panel>
+
                           </>
                         )}
                       </Disclosure>
@@ -259,13 +276,13 @@ export default function Example() {
                   ))}
                 </ul>
 
-                {filters.map((section) => (
-                  <Disclosure as="div" key={section.id} className="border-b border-gray-200 py-6">
+
+                  <Disclosure as="div" className="border-b border-gray-200 py-6">
                     {({ open }) => (
                       <>
                         <h3 className="-my-3 flow-root">
                           <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
-                            <span className="font-medium text-gray-900">{section.name}</span>
+                            <span className="font-medium text-gray-900">Colors</span>
                             <span className="ml-6 flex items-center">
                               {open ? (
                                 <MinusIcon className="h-5 w-5" aria-hidden="true" />
@@ -277,39 +294,75 @@ export default function Example() {
                         </h3>
                         <Disclosure.Panel className="pt-6">
                           <div className="space-y-4">
-                            {section.options.map((option, optionIdx) => (
-                              <div key={option.value} className="flex items-center">
-                                <input
-                                  id={`filter-${section.id}-${optionIdx}`}
-                                  name={`${section.id}[]`}
-                                  defaultValue={option.value}
-                                  type="checkbox"
-                                  defaultChecked={option.checked}
-                                  className="h-4 w-4 rounded border-gray-300 text-emerald-500 focus:ring-emerald-500"
-                                />
-                                <label
-                                  htmlFor={`filter-${section.id}-${optionIdx}`}
-                                  className="ml-3 text-sm text-gray-600"
-                                >
-                                  {option.label}
-                                </label>
-                              </div>
-                            ))}
+                          <RadioGroup value={selectedColor} onChange={setSelectedColor} className="mt-4 flex">
+                              <RadioGroup.Label className="sr-only"> Choose a color </RadioGroup.Label>
+                              <span className="flex flex-wrap items-center space-x-2 space-y-3">
+                                {product.colors.map((color) => (
+                                  <RadioGroup.Option
+                                    key={color.name}
+                                    value={color}
+                                    className={({ active, checked }) =>
+                                      classNames(
+                                        color.selectedClass,
+                                        active && checked ? 'ring ring-offset-1' : '',
+                                        !active && checked ? 'ring-2' : '',
+                                        '-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none'
+                                      )
+                                    }
+                                  >
+                                    <RadioGroup.Label as="span" className="sr-only">
+                                      {' '}
+                                      {color.name}{' '}
+                                    </RadioGroup.Label>
+                                    <span
+                                      aria-hidden="true"
+                                      className={classNames(
+                                        color.class,
+                                        'h-8 w-8 border border-black border-opacity-10 rounded-full'
+                                      )}
+                                    />
+                                  </RadioGroup.Option>
+                                ))}
+                              </span>
+                            </RadioGroup>
                           </div>
                         </Disclosure.Panel>
                       </>
                     )}
                   </Disclosure>
-                ))}
+                  <Disclosure as="div" className="border-b border-gray-200 py-6">
+                    {({ open }) => (
+                      <>
+                        <h3 className="-my-3 flow-root">
+                          <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
+                            <span className="font-medium text-gray-900">Pricing</span>
+                            <span className="ml-6 flex items-center">
+                              {open ? (
+                                <MinusIcon className="h-5 w-5" aria-hidden="true" />
+                              ) : (
+                                <PlusIcon className="h-5 w-5" aria-hidden="true" />
+                              )}
+                            </span>
+                          </Disclosure.Button>
+                        </h3>
+                        <Disclosure.Panel className="pt-6">
+                          <div className="space-y-4">
+                            <input id="small-range" type="range" defaultValue={50} max={100} min={0} className="w-full h-1 mb-6 bg-gray-200 rounded-lg appearance-none cursor-pointer range-sm"/>
+                          </div>
+                        </Disclosure.Panel>
+                      </>
+                    )}
+                  </Disclosure>
               </form>
 
               {/* Product grid */}
               <div className="lg:col-span-4">
                 {/* Replace with your content */}
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-3 lg:gap-x-6 gap-y-10">
-                    {products ? products.map(product => <Product key={product._id} product={product}/>) : <h1>Loading</h1>}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-2 lg:gap-x-6 gap-y-10">
+                    {products ? products.slice(0, nopts).map(product => <Product key={product._id} product={product}/>) : <h1>Loading</h1>}
                 </div>
                 {/* /End replace */}
+                <button onClick={() => setnopts(nopts + 1)} className='mt-10 bg-gray-900 text-white'>Load More</button>
               </div>
             </div>
           </section>

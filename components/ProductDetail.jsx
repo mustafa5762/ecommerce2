@@ -7,52 +7,29 @@ import InnerImageZoom from 'react-inner-image-zoom';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
 
 
-const product = {
-  name: 'ITACHI UCHIHA GENJUTSU SWEATSHIRT',
-  price: '2,800',
-  rating: 3.9,
-  reviewCount: 117,
-  href: '#',
-  imageSrc: 'https://outlander.com.pk/wp-content/uploads/2021/10/Itachi-Uchiha.jpg',
-  imageAlt: 'Two each of gray, white, and black shirts arranged on table.',
-  colors: [
-    { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
-    { name: 'Gray', class: 'bg-gray-200', selectedClass: 'ring-gray-400' },
-    { name: 'Black', class: 'bg-gray-900', selectedClass: 'ring-gray-900' },
-  ],
-  sizes: [
-    { name: 'XXS', inStock: true },
-    { name: 'XS', inStock: true },
-    { name: 'S', inStock: true },
-    { name: 'M', inStock: true },
-    { name: 'L', inStock: true },
-    { name: 'XL', inStock: true },
-    { name: 'XXL', inStock: true },
-    { name: 'XXXL', inStock: false },
-  ],
-}
 
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-function Productdetail() {
+function Productdetail({product}) {
 
-  const [selectedColor, setSelectedColor] = useState(product.colors[0])
-  const [selectedSize, setSelectedSize] = useState(product.sizes[2])
+  const [selectedColor, setSelectedColor] = useState(product.colors[1])
+  const [selectedSize, setSelectedSize] = useState(product.sizes[1])
 
   const [cart, setcart] = useStatePersist('@cart', [])
   const [count, setcount] = useState(0)
 
   const addToCart = (pro) => {
     const data = {
-      name: product.name,
-      price: product.price,
-      color: 'Black',
-      size: 'XL',
-      image: pro.imageSrc,
-      quantity: 1
+      id: pro._id,
+      name: pro.name,
+      price: pro.price,
+      color: selectedColor.name,
+      size: selectedSize.name,
+      image: pro.image,
+      quantity: count
     }
     setcart([...cart, data])
   }
@@ -60,21 +37,21 @@ function Productdetail() {
   return (
     <>
         <div className="lg:px-32 mt-8">
-        <Breadcrumb/>
+        <Breadcrumb name={product.name}/>
         <div className="mt-6"></div>
-        <div className="grid w-full grid-cols-1 items-start gap-y-8 gap-x-6 sm:grid-cols-12 lg:gap-x-20">
+        <div className="grid w-full grid-cols-1 items-start gap-y-8 gap-x-6 sm:grid-cols-12 lg:gap-x-12">
                     <div className="aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-6">
-                    <InnerImageZoom zoomType="hover" zoomPreload={true} src={product.imageSrc} zoomSrc={product.imageSrc} className="border-1 object-cover object-senter" />
+                    <InnerImageZoom zoomType="hover" zoomPreload={true} src={product.image} zoomSrc={product.image} className="border-1 object-cover object-senter" />
                     </div>
                     <div className="sm:col-span-8 lg:col-span-6 px-4">
-                      <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">{product.name}</h2>
+                      <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">Gray Running Sneakers</h2>
 
                       <section aria-labelledby="information-heading" className="mt-2">
                         <h3 id="information-heading" className="sr-only">
                           Product information
                         </h3>
 
-                        <p className="text-2xl text-gray-900">Rs {product.price}</p>
+                        <p className="text-xl text-gray-900">Rs {product.price}</p>
 
                         {/* Reviews */}
                         <div className="mt-6">
@@ -85,7 +62,7 @@ function Productdetail() {
                                 <StarIcon
                                   key={rating}
                                   className={classNames(
-                                    product.rating > rating ? 'text-gray-900' : 'text-gray-200',
+                                    4 > rating ? 'text-yellow-500' : 'text-gray-200',
                                     'h-5 w-5 flex-shrink-0'
                                   )}
                                   aria-hidden="true"
@@ -93,8 +70,8 @@ function Productdetail() {
                               ))}
                             </div>
                             <p className="sr-only">{product.rating} out of 5 stars</p>
-                            <a href="#" className="ml-3 text-sm font-medium text-emerald-500 hover:text-emerald-400">
-                              {product.reviewCount} reviews
+                            <a href="#" className="ml-3 text-sm font-medium text-purple-500 hover:text-purple-400">
+                              12 reviews
                             </a>
                           </div>
                         </div>
@@ -147,14 +124,14 @@ function Productdetail() {
                           <div className="mt-10">
                             <div className="flex items-center justify-between">
                               <h4 className="text-sm font-medium text-gray-900">Size</h4>
-                              <a href="#" className="text-sm font-medium text-emerald-500 hover:text-emerald-400">
+                              <a href="#" className="text-sm font-medium text-purple-500 hover:text-purple-400">
                                 Size guide
                               </a>
                             </div>
 
                             <RadioGroup value={selectedSize} onChange={setSelectedSize} className="mt-4">
                               <RadioGroup.Label className="sr-only"> Choose a size </RadioGroup.Label>
-                              <div className="grid grid-cols-4 gap-4">
+                              <div className="grid grid-cols-6 gap-4">
                                 {product.sizes.map((size) => (
                                   <RadioGroup.Option
                                     key={size.name}
@@ -165,7 +142,7 @@ function Productdetail() {
                                         size.inStock
                                           ? 'bg-white shadow-sm text-gray-900 cursor-pointer'
                                           : 'bg-gray-50 text-gray-200 cursor-not-allowed',
-                                        active ? 'ring-2 ring-emerald-500' : '',
+                                        active ? 'ring-2 ring-purple-500' : '',
                                         'group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1'
                                       )
                                     }
@@ -177,7 +154,7 @@ function Productdetail() {
                                           <span
                                             className={classNames(
                                               active ? 'border' : 'border-2',
-                                              checked ? 'border-emerald-500' : 'border-transparent',
+                                              checked ? 'border-purple-500' : 'border-transparent',
                                               'pointer-events-none absolute -inset-px rounded-md'
                                             )}
                                             aria-hidden="true"
@@ -205,7 +182,7 @@ function Productdetail() {
                             </RadioGroup>
                           </div>
                           <div className="flex space-x-2 lg:space-x-5">
-                            <div className="mt-6 border-2 w-3/6 lg:w-2/6 py-3 px-4 lg:px-8 text-base rounded-md text-gray-800 flex items-center justify-between">
+                            <div className="mt-6 border-2 w-2/5 lg:w-2/6 py-2.5 px-4 lg:px-8 text-base rounded-md text-gray-800 flex items-center justify-between">
                               <div>
                                 <MinusIcon onClick={() => setcount(count - 1)} className="h-5 w-5 text-gray-500"/>
                               </div>
@@ -215,7 +192,7 @@ function Productdetail() {
                               </div>
                             </div>              
                             <button
-                              className="mt-6 flex w-3/6 lg:w-4/6 items-center justify-center rounded-md border border-transparent bg-emerald-500 py-3 px-8 text-base font-medium text-white hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                              className="mt-6 flex w-3/5 lg:w-4/6 items-center justify-center rounded-md border border-transparent bg-purple-500 py-2.5 px-8 text-base font-medium text-white hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                               onClick={() => addToCart(product)}
                               >
                               Add to Cart

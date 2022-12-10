@@ -1,19 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
+import {AnimatePresence, motion} from 'framer-motion'
 
 function Product({product}) {
 
+  const [open, setopen] = useState(false)
 
   return (
     <div>
         <Link href={"/products/" + product._id}>
-        <div key={product._id} className="group relative">
-              <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80">
+        <div onMouseEnter={() => setopen(true)} onMouseLeave={() => setopen(false)} key={product._id} className="relative">
+              <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 lg:h-80">
                 <img
-                  src="https://tailwindui.com/img/ecommerce-images/product-quick-preview-02-detail.jpg"
+                  src={product.image}
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                 />
-                <div className="absolute top-2 left-3 bg-orange-500 w-14 h-6 rounded-sm text-white flex items-center justify-center text-sm">New</div>
+                <div className="absolute bottom-0 w-full flex items-end">
+                 <AnimatePresence> {open && <motion.div initial={{height:0}} animate={{height:40}} exit={{height:0,opacity:0}} transition={{type:'spring',stiffness:100}} className="h-12 bg-gray-900 text-white w-full flex justify-center items-center text-sm font-medium cursor-pointer">Add to Cart</motion.div>}</AnimatePresence>
+                </div>
               </div>
               <div className="mt-4 flex justify-between">
                 <div>
@@ -21,9 +25,8 @@ function Product({product}) {
                       <span aria-hidden="true" className="absolute inset-0" />
                       {product.name}
                   </h3>
-                  <p className="mt-0.5 text-sm text-gray-500">{product.category}</p>
+                  <p className="mt-0.5 text-sm text-gray-500">{product.price}</p>
                 </div>
-                <p className="text-sm font-medium text-gray-900">{product.price}</p>
               </div>
             </div>
         </Link>

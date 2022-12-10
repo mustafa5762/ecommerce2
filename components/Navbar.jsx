@@ -4,6 +4,7 @@ import { Bars3Icon, MagnifyingGlassIcon, ShoppingCartIcon, XMarkIcon } from '@he
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {auth} from '../utils/firebase'
 import { useStatePersist } from 'use-state-persist';
+import Link from 'next/link'
 
 const navigation = {
   categories: [
@@ -132,7 +133,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example({setOpenn}) {
+export default function Example({setOpenn,setopin}) {
 
   const [user, loading] = useAuthState(auth);
   const [open, setOpen] = useState(false)
@@ -283,7 +284,7 @@ export default function Example({setOpenn}) {
       </Transition.Root>
 
       <header className="relative">
-        <p className="flex h-10 items-center justify-center bg-emerald-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
+        <p className="flex h-10 items-center justify-center bg-purple-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
           Get free delivery on orders over Rs 2500
         </p>
 
@@ -305,7 +306,7 @@ export default function Example({setOpenn}) {
                   <span className="sr-only">Your Company</span>
                   <img
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=emerald&shade=500"
+                    src="https://tailwindui.com/img/logos/mark.svg?color=purple&shade=500"
                     alt=""
                   />
                 </a>
@@ -322,7 +323,7 @@ export default function Example({setOpenn}) {
                             <Popover.Button
                               className={classNames(
                                 open
-                                  ? 'border-emerald-500 text-emerald-500'
+                                  ? 'border-purple-500 text-purple-500'
                                   : 'border-transparent text-gray-700 hover:text-gray-800',
                                 'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
                               )}
@@ -400,13 +401,14 @@ export default function Example({setOpenn}) {
                   ))}
 
                   {navigation.pages.map((page) => (
+                    <Link href={page.href}>
                     <a
                       key={page.name}
-                      href={page.href}
                       className="flex items-center text-sm tracking-wide font-medium text-gray-700 hover:text-gray-800"
                     >
                       {page.name}
                     </a>
+                    </Link>
                   ))}
                 </div>
               </Popover.Group>
@@ -436,7 +438,7 @@ export default function Example({setOpenn}) {
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <a href="#" className="group -m-2 flex items-center p-2">
+                  <a onClick={() => setopin(true)} className="group -m-2 flex items-center p-2">
                     <ShoppingCartIcon
                       strokeWidth={1.5}
                       className="h-6 w-6 flex-shrink-0 text-gray-500 group-hover:text-gray-600"
@@ -450,7 +452,7 @@ export default function Example({setOpenn}) {
                   user &&
                   <>
                   <div className='relative ml-8'>
-                    <img onClick={() => setmenu(!menu)} referrerpolicy="no-referrer" className="w-7 h-7 rounded-full" src={user.photoURL} alt="Rounded avatar"></img>
+                    <img onClick={() => setmenu(!menu)} referrerpolicy="no-referrer" className="hover:ring-1ring-offset-2 ring-gray-600 w-7 h-7 rounded-full" src={user.photoURL} alt="Rounded avatar"></img>
                     { menu && <div class="z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow-xl absolute right-0 border border-gray-200">
                         <div class="py-3 px-4 text-sm text-gray-900 ">
                           <div>{user.displayName}</div>

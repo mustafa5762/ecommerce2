@@ -28,13 +28,17 @@ const products = [
   // More products...
 ]
 
-export default function Example() {
-  const [open, setOpen] = useState(true)
+export default function Example({opin, setopin}) {
+
   const [cart, setcart] = useStatePersist('@cart')
 
+  const remove = (id) => {
+    setcart(cart.filter((item) => item.id !== id ))
+  }
+
   return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+    <Transition.Root show={opin} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={setopin}>
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-500"
@@ -68,7 +72,7 @@ export default function Example() {
                           <button
                             type="button"
                             className="-m-2 p-2 text-gray-400 hover:text-gray-500"
-                            onClick={() => setOpen(false)}
+                            onClick={() => setopin(false)}
                           >
                             <span className="sr-only">Close panel</span>
                             <XMarkIcon className="h-6 w-6" aria-hidden="true" />
@@ -105,7 +109,8 @@ export default function Example() {
                                     <div className="flex">
                                       <button
                                         type="button"
-                                        className="font-medium text-indigo-600 hover:text-indigo-500"
+                                        className="font-medium text-purple-600 hover:text-purple-500"
+                                        onClick={() => remove(product.id)}
                                       >
                                         Remove
                                       </button>
@@ -128,7 +133,7 @@ export default function Example() {
                       <div className="mt-6">
                         <a
                           href="#"
-                          className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                          className="flex items-center justify-center rounded-md border border-transparent bg-purple-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-purple-700"
                         >
                           Checkout
                         </a>
@@ -138,8 +143,8 @@ export default function Example() {
                           or
                           <button
                             type="button"
-                            className="font-medium text-indigo-600 hover:text-indigo-500"
-                            onClick={() => setOpen(false)}
+                            className="ml-3 font-medium text-purple-600 hover:text-purple-500"
+                            onClick={() => setopin(false)}
                           >
                             Continue Shopping
                             <span aria-hidden="true"> &rarr;</span>
