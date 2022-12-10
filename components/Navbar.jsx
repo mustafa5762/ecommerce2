@@ -401,9 +401,8 @@ export default function Example({setOpenn,setopin}) {
                   ))}
 
                   {navigation.pages.map((page) => (
-                    <Link href={page.href}>
+                    <Link href={page.href} key={page.name}>
                     <a
-                      key={page.name}
                       className="flex items-center text-sm tracking-wide font-medium text-gray-700 hover:text-gray-800"
                     >
                       {page.name}
